@@ -13,7 +13,11 @@ const schema = new Schema(
     },
     _assessment: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true
+      required: false
+    },
+    _course: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: false
     },
     shared: { type: Boolean, default: true },
     startTime: { type: Date, required: true },
@@ -22,7 +26,20 @@ const schema = new Schema(
     notified: { type: Boolean, default: false },
     location: { type: String, trim: true, minlength: 1, maxlength: 200 }
   },
-  { timestamps: true }
+  { timestamps: true,
+    anyOf: [
+      {
+        required: [
+          '_assesment'
+        ]
+      },
+      {
+        required: [
+          '_course'
+        ]
+      }
+    ]
+  }
 )
 
 schema.set('toObject', { getters: true, virtuals: true })
