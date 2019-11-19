@@ -10,9 +10,9 @@
         Schedule
         <b>{{ dateStrs.start }}</b> to
         <b>{{ dateStrs.end }}</b>
-        <span class="is-pulled-right add-assessment-buttons">
+        <span class="is-pulled-right">
           <a
-            class="has-text-black"
+            class="has-text-black add-assessment"
             title="Add a new assignment"
             @click="openAddAssessmentModal('assignment')"
           >
@@ -22,7 +22,7 @@
             Assignment
           </a>
           <a
-            class="has-text-black"
+            class="has-text-black add-assessment"
             title="Add a new exam"
             @click="openAddAssessmentModal('exam')"
           >
@@ -154,4 +154,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .add-assessment:hover {
+    color: #70cad1 !important;
+  }
 </style>
