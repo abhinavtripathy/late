@@ -10,6 +10,28 @@
         Schedule
         <b>{{ dateStrs.start }}</b> to
         <b>{{ dateStrs.end }}</b>
+        <span class="is-pulled-right add-assessment-buttons">
+          <a
+            class="has-text-black"
+            title="Add a new assignment"
+            @click="openAddAssessmentModal('assignment')"
+          >
+            <span class="icon">
+              <i class="fa fa-plus" />
+            </span>
+            Assignment
+          </a>
+          <a
+            class="has-text-black"
+            title="Add a new exam"
+            @click="openAddAssessmentModal('exam')"
+          >
+            <span class="icon">
+              <i class="fa fa-plus" />
+            </span>
+            Exam
+          </a>
+        </span>
       </p>
       <div
         v-if="assessments.length === 0"
@@ -108,6 +130,12 @@ export default {
     }
   },
   methods: {
+    openAddAssessmentModal (assessmentType) {
+      this.$emit('close-modal')
+      this.$store.commit(
+        'TOGGLE_ADD_' + assessmentType.toUpperCase() + '_MODAL'
+      )
+    },
     course (crn) {
       return this.$store.getters.getCourseFromCRN(crn)
     },
